@@ -1,0 +1,12 @@
+{
+  "extends": ["tslint-config-airbnb", "tslint-react"],
+  "rules": {
+    "semicolon": [true, "never"],
+    "max-line-length": [true, 200],
+    "member-access": true,
+    "no-else-after-return": false,
+    "align": false,
+    "variable-name": false,
+    "jsx-no-lambda": false
+  }
+}
