@@ -13,7 +13,7 @@ export class Telemetry {
     this.lastEvent = new Date();
     this.prepareSource()
     this.sayHello()
-    setInterval(() => this.heartBeat(), 15 * 1000);
+    setInterval(() => this.heartBeat(), 90 * 1000);
   }
 
   public trackEvent(name: string) {
@@ -41,6 +41,7 @@ export class Telemetry {
   }
 
   private heartBeat() {
+    this.eventSink.merge({ heartbeat: 1 })
     this.eventSink.commit();
   }
 }

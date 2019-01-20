@@ -45,7 +45,6 @@ class ElectronRendererTelemetry {
   public registerErrorHandler() {
     if (typeof window !== 'undefined') {
       window.addEventListener('error', function(event) { 
-        console.log('Got ya', event)
         ipcRenderer.send(TRACK_ERROR, { stack: event.error.stack, message: event.error.message })    
       })
 

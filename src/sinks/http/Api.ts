@@ -16,7 +16,6 @@ const api = axios.create({
       if (typeof data === 'string'/* && data.length > 1024*/) {
         headers['Content-Encoding'] = 'gzip'
         const encoded = Buffer.from(pako.gzip(data))
-        console.log('before: ',  data.length, ' after: ', encoded.length)
         return encoded
       } else {
         // delete is slow apparently, faster to set to undefined

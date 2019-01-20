@@ -30,6 +30,7 @@ export interface Message {
   errors?: ErrorReport[]
   now?: number
   uuid?: string
+  heartbeat?: number
 }
 
 export interface TelemetrySource {
