@@ -23,12 +23,14 @@ export interface SimilarToError {
 }
 
 export interface Message {
+  protocol?: number, // version of the current protocol
   system?: SystemInfo
   transactionId?: string
   appVersion?: string
   events?: {[s: string]: number[]}
   errors?: ErrorReport[]
-  now?: number
+  committed?: number
+  sent?: number
   uuid?: string
   heartbeat?: number
 }

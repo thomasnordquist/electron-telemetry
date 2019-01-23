@@ -23,10 +23,10 @@ export class HttpSink implements Sink {
     return this.transactions[lastIndex]
   }
 
-  private setCurrentMessage(message: Message) {
+  private setCurrentMessage(message: Message): void {
     this.ensureMessageExists()
     const lastIndex = this.transactions.length-1
-    return this.transactions[lastIndex]
+    this.transactions[lastIndex] = message
   }
 
   private ensureMessageExists() {
@@ -116,11 +116,16 @@ export class HttpSink implements Sink {
     }
 
     this.merge({
-      now: Date.now(),
+      committed: Date.now(),
       uuid: this.uuid,
       transactionId: uuid(),
+      protocol: 1,
     })
     this.store()
+
+    this.transactions.forEach(transaction => {
+      transaction.sent = Date.now()
+    })
 
     try {
       await api.post(`${config.telemetryHost}/app/${this.appId}`, this.transactions)
@@ -128,7 +133,10 @@ export class HttpSink implements Sink {
       this.store()
     } catch(error) {
       console.warn(error)
-      // ignore^
+      // clean up
+      this.transactions.forEach(transaction => {
+        transaction.sent = undefined
+      })
     }
   }
 
