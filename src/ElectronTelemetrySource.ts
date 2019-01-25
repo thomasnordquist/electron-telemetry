@@ -1,6 +1,7 @@
 import * as electron from 'electron'
 import * as fs from 'fs'
 import * as path from 'path'
+const os = require('os')
 
 import { arch, platform } from 'os'
 
@@ -11,6 +12,7 @@ export class ElectronTelemetrySource implements TelemetrySource {
     return {
       arch: arch(),
       platform: platform(),
+      release: os.release(),
     }
   }
 

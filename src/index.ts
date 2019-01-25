@@ -59,6 +59,16 @@ class ElectronRendererTelemetry {
         console.warn(`WARNING: Unhandled promise rejection. Reason: ${event.reason}`, event)
       })
     }
+
+    this.trackLanguage()
+  }
+
+  trackLanguage() {
+    if (!navigator || !navigator.language) {
+      return
+    }
+
+    this.trackCustomEvent({ name: 'navigatorLanguage', payload: navigator.language })
   }
 
   trackError(error: Error) {

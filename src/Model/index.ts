@@ -1,6 +1,7 @@
 export interface SystemInfo {
   arch?: string
   platform?: string
+  release: string
 }
 
 export interface ErrorReport {
