@@ -29,11 +29,13 @@ export class ElectronTelemetrySource implements TelemetrySource {
 
       electron.dialog.showMessageBox({
         type: 'error',
-        buttons: [ 'Sorry, see you soon!' ],
-        message: error.stack || error.message,
+        buttons: [ 'Continue anyway' , 'Crash' ],
+        message: `The app has unexpectedly received an error, normal app behavior is no longer guaranteed. ${error.stack || error.message}`,
         title: error.name,
-      }, () => {
-        process.exit(1)
+      }, (buttonIdx: number) => {
+        if (buttonIdx === 1) {
+          process.exit(1)
+        }
       })
     })
   }
