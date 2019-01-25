@@ -28,17 +28,21 @@ export class ElectronTelemetrySource implements TelemetrySource {
     process.on('uncaughtException', (error) => {
       callback(error)
       console.error(error)
-
-      electron.dialog.showMessageBox({
-        type: 'error',
-        buttons: [ 'Continue anyway' , 'Crash' ],
-        message: `The app has unexpectedly received an error, normal app behavior is no longer guaranteed. ${error.stack || error.message}`,
-        title: error.name,
-      }, (buttonIdx: number) => {
-        if (buttonIdx === 1) {
-          process.exit(1)
-        }
-      })
+      try {
+        electron.dialog.showMessageBox({
+          type: 'error',
+          buttons: [ 'Continue anyway' , 'Crash' ],
+          message: `The app has unexpectedly received an error, normal app behavior is no longer guaranteed. ${error.stack || error.message}`,
+          title: error.name,
+        }, (buttonIdx: number) => {
+          if (buttonIdx === 1) {
+            process.exit(1)
+          }
+        })
+      } catch(error) {
+        console.error('Can\'t show error dialog', error)
+        setTimeout(() => process.exit(1), 3000) 
+      }
     })
   }
 }

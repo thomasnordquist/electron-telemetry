@@ -31,7 +31,7 @@ export class Telemetry {
 
   private prepareSource() {
     this.source.onException((error: Error) => {
-      this.eventSink.trackError({...error, source: ElectronEventSource.main});
+      this.eventSink.trackError({stack: error.stack, message: error.message, name: error.name, source: ElectronEventSource.main});
     });
     this.eventSink.merge({
       system: this.source.systemInfo(),
