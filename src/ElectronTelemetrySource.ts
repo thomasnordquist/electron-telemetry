@@ -29,7 +29,7 @@ export class ElectronTelemetrySource implements TelemetrySource {
 
       electron.dialog.showMessageBox({
         type: 'error',
-        buttons: [ 'Bye, see you soon!' ],
+        buttons: [ 'Sorry, see you soon!' ],
         message: error.stack || error.message,
         title: error.name,
       }, () => {

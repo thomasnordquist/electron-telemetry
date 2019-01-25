@@ -29,10 +29,17 @@ export interface Message {
   appVersion?: string
   events?: {[s: string]: number[]}
   errors?: ErrorReport[]
+  customEvents?: CustomEvent[]
   committed?: number
   sent?: number
   uuid?: string
   heartbeat?: number
+}
+
+export interface CustomEvent {
+  name: string,
+  payload: any,
+  time?: number
 }
 
 export interface TelemetrySource {

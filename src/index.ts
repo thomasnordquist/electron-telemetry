@@ -2,11 +2,12 @@ import { ElectronTelemetrySource, ElectronStorage } from './ElectronTelemetrySou
 import { HttpSink } from './sinks/http/HttpSink'
 import { Telemetry } from './Telemetry';
 import { ipcRenderer, ipcMain } from 'electron'
-import { SimilarToError, ElectronEventSource } from './Model';
+import { SimilarToError, ElectronEventSource, CustomEvent } from './Model';
 import { v4 } from 'uuid'
 
 const TRACK_ERROR = 'telemetry/track/error'
 const TRACK_EVENT = 'telemetry/track/event'
+const TRACK_CUSTOM_EVENT = 'telemetry/track/custom_event'
 
 export const electronTelemetryFactory = (appId: string) => {
   let telemetryStorage = new ElectronStorage('data')
@@ -33,8 +34,13 @@ export const electronTelemetryFactory = (appId: string) => {
   ipcMain.on(TRACK_ERROR, (event: any, error: SimilarToError) => {
     telemetry.trackError({...error, source: ElectronEventSource.renderer})
   })
+
   ipcMain.on(TRACK_EVENT, (event: any, name: string) => {
     telemetry.trackEvent(name)
+  })
+
+  ipcMain.on(TRACK_CUSTOM_EVENT, (_e: any, event: CustomEvent) => {
+    telemetry.trackCustomEvent(event)
   })
 
   return telemetry
@@ -57,6 +63,10 @@ class ElectronRendererTelemetry {
 
   trackError(error: Error) {
     ipcRenderer.send(TRACK_ERROR, { name: error.name, stack: error.stack, message: error.message })    
+  }
+
+  trackCustomEvent(event: CustomEvent) {
+    ipcRenderer.send(TRACK_CUSTOM_EVENT, event)
   }
 
   trackEvent(name: string) {

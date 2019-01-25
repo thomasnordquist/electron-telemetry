@@ -1,4 +1,4 @@
-import { Message, Persistance, SimilarToError } from '../../Model'
+import { Message, Persistance, SimilarToError, CustomEvent } from '../../Model'
 import { Sink } from '../Sink'
 import config from '../../config'
 import api from './Api'
@@ -62,6 +62,16 @@ export class HttpSink implements Sink {
     }
 
     return false
+  }
+
+  public trackCustomEvent(event: CustomEvent) {
+    const message = this.getCurrentMessage()
+    if (!message.customEvents) {
+      message.customEvents = []
+    }
+    event.time = Date.now()
+
+    message.customEvents.push(event)
   }
 
   public trackEvent(eventName: string) {

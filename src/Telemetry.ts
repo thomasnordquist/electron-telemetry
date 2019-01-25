@@ -1,4 +1,4 @@
-import { SimilarToError, TelemetrySource, ElectronEventSource } from './Model';
+import { SimilarToError, TelemetrySource, ElectronEventSource, CustomEvent } from './Model';
 import { Sink } from './sinks/Sink';
 const APP_STARTED = 'APP_STARTED'
 
@@ -13,12 +13,16 @@ export class Telemetry {
     this.lastEvent = new Date();
     this.prepareSource()
     this.sayHello()
-    setInterval(() => this.heartBeat(), 90 * 1000);
+    setInterval(() => this.heartBeat(), 120 * 1000);
   }
 
   public trackEvent(name: string) {
-    this.lastEvent = new Date();
-    this.eventSink.trackEvent(name);
+    this.lastEvent = new Date()
+    this.eventSink.trackEvent(name)
+  }
+
+  public trackCustomEvent(event: CustomEvent) {
+    this.eventSink.trackCustomEvent(event)
   }
 
   public trackError(error: SimilarToError) {
