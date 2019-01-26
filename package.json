@@ -4,11 +4,17 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "postinstall": "tsc"
+    "prepack": "tsc",
+    "postpack": "rm *.tgz"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
+    "pako": "^1.0.8",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
     "electron": "4.x",
     "@types/node": "^10.12.18",
     "@types/pako": "^1.0.0",
@@ -16,10 +22,7 @@
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
     "tslint-config-airbnb": "^5.11.1",
-    "typescript": "^3.2.2",
-    "axios": "^0.18.0",
-    "pako": "^1.0.8",
-    "uuid": "^3.3.2"
+    "typescript": "^3.2.2"
   },
   "peerDependencies": {
     "electron": "4.x"
