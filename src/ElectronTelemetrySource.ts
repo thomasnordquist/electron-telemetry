@@ -5,14 +5,21 @@ const os = require('os')
 
 import { arch, platform } from 'os'
 
-import { TelemetrySource, Persistance } from './Model'
+import { TelemetrySource, Persistance, BuildInfo } from './Model'
 
 export class ElectronTelemetrySource implements TelemetrySource {
+  public buildInfo: BuildInfo
+
+  constructor(buildInfo: BuildInfo) {
+    this.buildInfo = buildInfo
+  }
+
   public systemInfo() {
     return {
       arch: arch(),
       platform: platform(),
       release: os.release(),
+      buildTarget: this.buildInfo.buildTarget,
     }
   }
 

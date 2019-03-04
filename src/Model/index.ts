@@ -2,6 +2,7 @@ export interface SystemInfo {
   arch?: string
   platform?: string
   release: string
+  buildTarget: string
 }
 
 export interface ErrorReport {
@@ -43,10 +44,15 @@ export interface CustomEvent {
   time?: number
 }
 
+export interface BuildInfo {
+  buildTarget: string
+}
+
 export interface TelemetrySource {
   systemInfo(): SystemInfo
   appVersion(): string
   onException(loggerCallback:(error: Error) => void): void
+  buildInfo: BuildInfo
 }
 
 export interface Persistance {
