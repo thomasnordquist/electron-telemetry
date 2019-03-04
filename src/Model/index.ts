@@ -2,6 +2,8 @@ export interface SystemInfo {
   arch?: string
   platform?: string
   release: string
+  package: string
+  packagePlatform: string
 }
 
 export interface ErrorReport {
@@ -43,10 +45,16 @@ export interface CustomEvent {
   time?: number
 }
 
+export interface BuildInfo {
+  platform: 'win' | 'linux' | 'mac'
+  package: 'portable' | 'nsis' | 'appx' | 'AppImage' | 'snap' | 'dmg' | 'zip' | 'mas'
+}
+
 export interface TelemetrySource {
   systemInfo(): SystemInfo
   appVersion(): string
   onException(loggerCallback:(error: Error) => void): void
+  buildInfo: BuildInfo
 }
 
 export interface Persistance {
