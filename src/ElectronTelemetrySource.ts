@@ -19,7 +19,8 @@ export class ElectronTelemetrySource implements TelemetrySource {
       arch: arch(),
       platform: platform(),
       release: os.release(),
-      buildTarget: this.buildInfo.buildTarget,
+      package: this.buildInfo.package,
+      packagePlatform: this.buildInfo.platform,
     }
   }
 

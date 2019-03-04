@@ -2,7 +2,8 @@ export interface SystemInfo {
   arch?: string
   platform?: string
   release: string
-  buildTarget: string
+  package: string
+  packagePlatform: string
 }
 
 export interface ErrorReport {
@@ -45,7 +46,8 @@ export interface CustomEvent {
 }
 
 export interface BuildInfo {
-  buildTarget: string
+  platform: 'win' | 'linux' | 'mac'
+  package: 'portable' | 'nsis' | 'appx' | 'AppImage' | 'snap' | 'dmg' | 'zip' | 'mas'
 }
 
 export interface TelemetrySource {
