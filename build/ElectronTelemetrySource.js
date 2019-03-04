@@ -6,13 +6,15 @@ var path = require("path");
 var os = require('os');
 var os_1 = require("os");
 var ElectronTelemetrySource = /** @class */ (function () {
-    function ElectronTelemetrySource() {
+    function ElectronTelemetrySource(buildInfo) {
+        this.buildInfo = buildInfo;
     }
     ElectronTelemetrySource.prototype.systemInfo = function () {
         return {
             arch: os_1.arch(),
             platform: os_1.platform(),
-            release: os.release()
+            release: os.release(),
+            buildTarget: this.buildInfo.buildTarget
         };
     };
     ElectronTelemetrySource.prototype.appVersion = function () {

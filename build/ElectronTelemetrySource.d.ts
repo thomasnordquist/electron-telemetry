@@ -1,10 +1,12 @@
-/// <reference types="node" />
-import { TelemetrySource, Persistance } from './Model';
+import { TelemetrySource, Persistance, BuildInfo } from './Model';
 export declare class ElectronTelemetrySource implements TelemetrySource {
+    buildInfo: BuildInfo;
+    constructor(buildInfo: BuildInfo);
     systemInfo(): {
         arch: string;
         platform: NodeJS.Platform;
         release: any;
+        buildTarget: string;
     };
     appVersion(): string;
     onException(callback: (err: Error) => void): void;

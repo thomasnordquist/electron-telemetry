@@ -20,7 +20,7 @@ var uuid_1 = require("uuid");
 var TRACK_ERROR = 'telemetry/track/error';
 var TRACK_EVENT = 'telemetry/track/event';
 var TRACK_CUSTOM_EVENT = 'telemetry/track/custom_event';
-exports.electronTelemetryFactory = function (appId) {
+exports.electronTelemetryFactory = function (appId, buildInfo) {
     var telemetryStorage = new ElectronTelemetrySource_1.ElectronStorage('data');
     var uuidStorage = new ElectronTelemetrySource_1.ElectronStorage('uuid');
     var uuid;
@@ -40,7 +40,7 @@ exports.electronTelemetryFactory = function (appId) {
         }
     }
     var httpSink = HttpSink_1.HttpSink.withStoredEvents(telemetryStorage, appId, uuid);
-    var telemetry = new Telemetry_1.Telemetry(new ElectronTelemetrySource_1.ElectronTelemetrySource(), httpSink);
+    var telemetry = new Telemetry_1.Telemetry(new ElectronTelemetrySource_1.ElectronTelemetrySource(buildInfo), httpSink);
     electron_1.ipcMain.on(TRACK_ERROR, function (event, error) {
         telemetry.trackError(__assign({}, error, { source: Model_1.ElectronEventSource.renderer }));
     });

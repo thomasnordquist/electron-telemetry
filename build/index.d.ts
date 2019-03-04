@@ -1,6 +1,6 @@
 import { Telemetry } from './Telemetry';
-import { CustomEvent } from './Model';
-export declare const electronTelemetryFactory: (appId: string) => Telemetry;
+import { CustomEvent, BuildInfo } from './Model';
+export declare const electronTelemetryFactory: (appId: string, buildInfo: BuildInfo) => Telemetry;
 declare class ElectronRendererTelemetry {
     registerErrorHandler(): void;
     trackLanguage(): void;
