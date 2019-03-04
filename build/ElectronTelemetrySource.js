@@ -14,7 +14,8 @@ var ElectronTelemetrySource = /** @class */ (function () {
             arch: os_1.arch(),
             platform: os_1.platform(),
             release: os.release(),
-            buildTarget: this.buildInfo.buildTarget
+            package: this.buildInfo.package,
+            packagePlatform: this.buildInfo.platform
         };
     };
     ElectronTelemetrySource.prototype.appVersion = function () {

@@ -6,7 +6,8 @@ export declare class ElectronTelemetrySource implements TelemetrySource {
         arch: string;
         platform: NodeJS.Platform;
         release: any;
-        buildTarget: string;
+        package: "portable" | "nsis" | "appx" | "AppImage" | "snap" | "dmg" | "zip" | "mas";
+        packagePlatform: "linux" | "win" | "mac";
     };
     appVersion(): string;
     onException(callback: (err: Error) => void): void;
