@@ -84,4 +84,4 @@ class ElectronRendererTelemetry {
   }
 }
 
-export const electronRendererTelementry = new ElectronRendererTelemetry()
+export const electronRendererTelemetry = new ElectronRendererTelemetry()
