@@ -84,5 +84,5 @@ var ElectronRendererTelemetry = /** @class */ (function () {
     };
     return ElectronRendererTelemetry;
 }());
-exports.electronRendererTelementry = new ElectronRendererTelemetry();
+exports.electronRendererTelemetry = new ElectronRendererTelemetry();
 //# sourceMappingURL=index.js.map

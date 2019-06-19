@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { TelemetrySource, Persistance, BuildInfo } from './Model';
 export declare class ElectronTelemetrySource implements TelemetrySource {
     buildInfo: BuildInfo;

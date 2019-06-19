@@ -8,5 +8,5 @@ declare class ElectronRendererTelemetry {
     trackCustomEvent(event: CustomEvent): void;
     trackEvent(name: string): void;
 }
-export declare const electronRendererTelementry: ElectronRendererTelemetry;
+export declare const electronRendererTelemetry: ElectronRendererTelemetry;
 export {};
