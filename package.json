@@ -15,17 +15,17 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "electron": "4.x",
     "@types/node": "^10.12.18",
     "@types/pako": "^1.0.0",
     "@types/uuid": "^3.4.4",
+    "electron": "^5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.2.2"
   },
   "peerDependencies": {
-    "electron": "4.x",
+    "electron": "^5",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   }
