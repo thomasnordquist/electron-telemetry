@@ -25,7 +25,7 @@
     "typescript": "^3.2.2"
   },
   "peerDependencies": {
-    "electron": "4.x",
+    "electron": "^5",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   }
