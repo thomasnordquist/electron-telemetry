@@ -25,15 +25,19 @@ var Telemetry = /** @class */ (function () {
     Telemetry.prototype.prepareSource = function () {
         var _this = this;
         this.source.onException(function (error) {
+            _this.eventSink.merge({
+                system: _this.source.systemInfo(),
+                appVersion: _this.source.appVersion()
+            });
             _this.eventSink.trackError({ stack: error.stack, message: error.message, name: error.name, source: Model_1.ElectronEventSource.main });
-        });
-        this.eventSink.merge({
-            system: this.source.systemInfo(),
-            appVersion: this.source.appVersion()
         });
     };
     Telemetry.prototype.sayHello = function () {
         this.trackEvent(APP_STARTED);
+        this.eventSink.merge({
+            system: this.source.systemInfo(),
+            appVersion: this.source.appVersion()
+        });
         this.eventSink.commit();
     };
     Telemetry.prototype.heartBeat = function () {
