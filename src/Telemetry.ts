@@ -31,16 +31,20 @@ export class Telemetry {
 
   private prepareSource() {
     this.source.onException((error: Error) => {
+      this.eventSink.merge({
+        system: this.source.systemInfo(),
+        appVersion: this.source.appVersion(),
+      });
       this.eventSink.trackError({stack: error.stack, message: error.message, name: error.name, source: ElectronEventSource.main});
-    });
-    this.eventSink.merge({
-      system: this.source.systemInfo(),
-      appVersion: this.source.appVersion(),
     });
   }
 
   private sayHello() {
     this.trackEvent(APP_STARTED);
+    this.eventSink.merge({
+      system: this.source.systemInfo(),
+      appVersion: this.source.appVersion(),
+    });
     this.eventSink.commit();
   }
 
